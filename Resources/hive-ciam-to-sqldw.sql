@@ -51,7 +51,7 @@ CREATE EXTERNAL TABLE reference_customers (
 )
 ROW FORMAT DELIMITED 
 FIELDS TERMINATED BY '\t' LINES TERMINATED BY '\n' 
-LOCATION "wasbs://from-db@algattikwas.blob.core.windows.net/";
+LOCATION "wasbs://from-db@$storageAccountName.blob.core.windows.net/";
 
 
 DROP TABLE ciam_customers;

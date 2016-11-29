@@ -187,3 +187,4 @@ $RECYCLE.BIN/
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
 Config/admin-password.txt
+VS-Solution/CIAMEmulator/App.config
