@@ -1,0 +1,40 @@
+{
+  "name": "SqlDwCustomerMergeDataset",
+  "properties": {
+    "structure": [
+      {
+        "name": "Date",
+        "type": "String"
+      },
+      {
+        "name": "CustomerId",
+        "type": "String"
+      },
+      {
+        "name": "Name",
+        "type": "String"
+      },
+      {
+        "name": "NewName",
+        "type": "String"
+      },
+      {
+        "name": "SoundMatch",
+        "type": "Int16"
+      }
+    ],
+    "published": false,
+    "type": "AzureSqlDWTable",
+    "linkedServiceName": "AzureSQLDWLinkedService",
+    "typeProperties": {
+      "tableName": "CustomerMerge"
+    },
+    "availability": {
+      "frequency": "Day",
+      "interval": 1
+    },
+    "external": false,
+    "policy": {}
+  },
+  "$schema": "http://datafactories.schema.management.azure.com/schemas/2015-09-01/Microsoft.DataFactory.Table.json"
+}

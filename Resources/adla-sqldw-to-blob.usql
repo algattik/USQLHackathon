@@ -1,0 +1,8 @@
+REFERENCE ASSEMBLY [Newtonsoft.Json];
+REFERENCE ASSEMBLY [Microsoft.Analytics.Samples.Formats];
+DECLARE @output string = @"wasb://to-ciam@$storageAccountName.blob.core.windows.net/customers.tsv";
+@result = SELECT * FROM EXTERNAL SqlDw
+EXECUTE @"SELECT * FROM dbo.CustomerMerge";
+OUTPUT @result TO @output
+USING new Microsoft.Analytics.Samples.Formats.Json.JsonOutputter();
+

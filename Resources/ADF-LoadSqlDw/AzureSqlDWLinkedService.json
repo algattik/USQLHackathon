@@ -1,0 +1,11 @@
+{
+  "name": "AzureSqlDWLinkedService",
+  "properties": {
+    "description": "",
+    "type": "AzureSqlDW",
+    "typeProperties": {
+      "connectionString": "Data Source=$sqlName.database.windows.net;Initial Catalog=$dwName;Integrated Security=False;User ID='$username';Password='$password';Connect Timeout=30;Encrypt=True"
+    }
+  },
+  "$schema": "http://datafactories.schema.management.azure.com/schemas/2015-09-01/Microsoft.DataFactory.LinkedService.json"
+}

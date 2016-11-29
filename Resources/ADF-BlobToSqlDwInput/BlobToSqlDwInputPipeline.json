@@ -1,0 +1,49 @@
+{
+    "name": "BlobToSqlDwInputPipeline",
+    "properties": {
+        "description": "",
+        "activities": [
+            {
+                "type": "DataLakeAnalyticsU-SQL",
+                "typeProperties": {
+                    "scriptPath": "/adf-resources/adla-ciam-to-sqldw.usql",
+                    "scriptLinkedService": "BlobLinkedService",
+                    "degreeOfParallelism": 5,
+                    "parameters": {
+                        "input": "wasb://from-ciam@$storageAccountName.blob.core.windows.net/{fileName}.json.gz",
+                        "input2": "wasb://from-db@$storageAccountName.blob.core.windows.net/customers.tsv",
+                        "output": "wasb://to-sqldw@$storageAccountName.blob.core.windows.net/from-adla/data.csv"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "BlobCustomerDataset"
+                    },
+                    {
+                        "name": "BlobCIAMCustomerDataset"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "SqlDwInputDataset"
+                    }
+                ],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 3
+                },
+                "scheduler": {
+                    "frequency": "Day",
+                    "interval": 1
+                },
+                "name": "ciam-to-sqldw-input",
+                "linkedServiceName": "ADLALinkedService"
+            }
+        ],
+        "start": "$today",
+        "end": "9999-08-14T00:00:00Z",
+        "isPaused": false,
+        "pipelineMode": "Scheduled"
+    }
+}

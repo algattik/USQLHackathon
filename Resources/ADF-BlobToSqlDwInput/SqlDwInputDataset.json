@@ -1,0 +1,18 @@
+{
+    "name": "SqlDwInputDataset",
+    "properties": {
+        "published": false,
+        "type": "AzureBlob",
+        "linkedServiceName": "BlobLinkedService",
+        "typeProperties": {
+            "folderPath": "to-sqldw/from-adla/data.csv",
+            "format": {
+                "type": "TextFormat"
+            }
+        },
+        "availability": {
+            "frequency": "Day",
+            "interval": 1
+        }
+    }
+}

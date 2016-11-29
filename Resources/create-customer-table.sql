@@ -1,0 +1,12 @@
+CREATE TABLE dbo.CustomerMerge (
+    Date NVARCHAR(400) NOT NULL
+    , CustomerId NVARCHAR(400) NOT NULL
+    , Name NVARCHAR(400) NOT NULL
+    , NewName NVARCHAR(400) NOT NULL
+    , SoundMatch SMALLINT NOT NULL
+)
+WITH
+(   
+    CLUSTERED COLUMNSTORE INDEX
+,   DISTRIBUTION = HASH([CustomerId])
+);

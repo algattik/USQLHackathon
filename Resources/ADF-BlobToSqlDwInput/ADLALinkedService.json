@@ -1,0 +1,12 @@
+{
+    "name": "ADLALinkedService",
+    "properties": {
+        "description": "",
+        "type": "AzureDataLakeAnalytics",
+        "typeProperties": {
+            "accountName": "$dataLakeAnalyticsName",
+            "authorization": "**********",
+            "sessionId": "**********"
+        }
+    }
+}

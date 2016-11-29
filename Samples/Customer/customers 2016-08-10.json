@@ -1,0 +1,17 @@
+{
+	"export": {
+		"date": "2016-08-10",
+		"customers": {
+			"customer": [
+				{
+					"customerid": "1",
+					"name": "Orlando Geeh"
+				}, {
+					"customerid": "2",
+					"name": "Jane Fawcett",
+				}
+			]
+		}
+	}
+}
+

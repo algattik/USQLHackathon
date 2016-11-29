@@ -1,0 +1,72 @@
+﻿REFERENCE ASSEMBLY [Newtonsoft.Json];
+REFERENCE ASSEMBLY [Microsoft.Analytics.Samples.Formats];
+
+DECLARE @input string = @"/Samples/Customer/{fileName}.json";
+DECLARE @input2 string = @"/Samples/Reference/customers.tsv";
+DECLARE @output string = @"/data.tsv";
+
+
+@json = 
+EXTRACT date string
+        , customers string 
+        , fileName string
+  FROM @input 
+USING new Microsoft.Analytics.Samples.Formats.Json.JsonExtractor("export");
+
+@relation =
+SELECT date,
+       Microsoft.Analytics.Samples.Formats.Json.JsonFunctions.JsonTuple(customers)["customer"] AS address_array
+FROM @json;
+
+@customers = 
+SELECT date, 
+       Microsoft.Analytics.Samples.Formats.Json.JsonFunctions.JsonTuple(customer) AS customer
+FROM @relation
+     CROSS APPLY
+        EXPLODE (Microsoft.Analytics.Samples.Formats.Json.JsonFunctions.JsonTuple(address_array).Values) AS A(customer);
+
+
+@ciam_customers =
+SELECT date,
+       customer["customerid"] AS CustomerID,
+       customer["name"] AS Name
+FROM @customers;
+
+@reference_customers =
+    EXTRACT CustomerID string,
+            NameStyle string,
+            Title string,
+            FirstName string,
+            MiddleName string,
+            LastName string,
+            Suffix string,
+            CompanyName string,
+            SalesPerson string,
+            EmailAddress string,
+            Phone string,
+            PasswordHash string,
+            PasswordSalt string,
+            rowguid string,
+            ModifiedDate string
+    FROM @input2
+    USING Extractors.Tsv();
+
+@reference_names =
+    SELECT CustomerID,
+           FirstName + " " + LastName AS newName
+    FROM @reference_customers;
+
+@result =
+    SELECT cc.*,
+           rc.newName
+           , USQLApplication.Soundex.Compute(cc.Name) == 
+             USQLApplication.Soundex.Compute(rc.newName)
+             AS SoundMatch
+    FROM @ciam_customers AS cc
+         LEFT OUTER JOIN
+             @reference_names AS rc
+         ON cc.CustomerID == rc.CustomerID;
+
+OUTPUT @result
+TO @output
+USING Outputters.Csv(quoting: false);

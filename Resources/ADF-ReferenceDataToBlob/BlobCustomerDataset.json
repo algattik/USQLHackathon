@@ -1,0 +1,86 @@
+{
+  "name": "BlobCustomerDataset",
+  "properties": {
+    "structure": [
+      {
+        "name": "CustomerID",
+        "type": "Int32"
+      },
+      {
+        "name": "NameStyle",
+        "type": "Boolean"
+      },
+      {
+        "name": "Title",
+        "type": "String"
+      },
+      {
+        "name": "FirstName",
+        "type": "String"
+      },
+      {
+        "name": "MiddleName",
+        "type": "String"
+      },
+      {
+        "name": "LastName",
+        "type": "String"
+      },
+      {
+        "name": "Suffix",
+        "type": "String"
+      },
+      {
+        "name": "CompanyName",
+        "type": "String"
+      },
+      {
+        "name": "SalesPerson",
+        "type": "String"
+      },
+      {
+        "name": "EmailAddress",
+        "type": "String"
+      },
+      {
+        "name": "Phone",
+        "type": "String"
+      },
+      {
+        "name": "PasswordHash",
+        "type": "String"
+      },
+      {
+        "name": "PasswordSalt",
+        "type": "String"
+      },
+      {
+        "name": "rowguid",
+        "type": "Guid"
+      },
+      {
+        "name": "ModifiedDate",
+        "type": "Datetime"
+      }
+    ],
+    "published": false,
+    "type": "AzureBlob",
+    "linkedServiceName": "BlobLinkedService",
+    "typeProperties": {
+      "fileName": "customers.tsv",
+      "folderPath": "from-db",
+      "format": {
+        "type": "TextFormat",
+        "rowDelimiter": "\n",
+        "columnDelimiter": "\t"
+      }
+    },
+    "availability": {
+      "frequency": "Day",
+      "interval": 1
+    },
+    "external": false,
+    "policy": {}
+  },
+  "$schema": "http://datafactories.schema.management.azure.com/schemas/2015-09-01/Microsoft.DataFactory.Table.json"
+}

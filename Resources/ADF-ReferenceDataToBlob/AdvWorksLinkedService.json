@@ -1,0 +1,11 @@
+{
+  "name": "AdventureWorksLinkedService",
+  "properties": {
+    "description": "",
+    "type": "AzureSqlDatabase",
+    "typeProperties": {
+      "connectionString": "Server=$sqlName.database.windows.net;Database=$dbName;User ID='$username';Password='$password';Trusted_Connection=False;Encrypt=True;Connection Timeout=30"
+    }
+  },
+  "$schema": "http://datafactories.schema.management.azure.com/schemas/2015-09-01/Microsoft.DataFactory.LinkedService.json"
+}

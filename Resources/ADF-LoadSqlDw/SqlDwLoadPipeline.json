@@ -1,0 +1,52 @@
+{
+  "name": "SqlDwLoadPipeline",
+  "properties": {
+    "activities": [
+      {
+        "type": "Copy",
+        "typeProperties": {
+          "source": {
+            "type": "BlobSource",
+            "recursive": false
+          },
+          "sink": {
+            "type": "SqlDWSink",
+            "allowPolyBase": true,
+            "polyBaseSettings": {},
+            "writeBatchSize": 0,
+            "writeBatchTimeout": "00:00:00"
+          }
+        },
+        "inputs": [
+          {
+            "name": "SqlDwInputDataset"
+          }
+        ],
+        "outputs": [
+          {
+            "name": "SqlDwCustomerMergeDataset"
+          }
+        ],
+        "policy": {
+          "timeout": "02:00:00",
+          "concurrency": 1,
+          "executionPriorityOrder": "NewestFirst",
+          "style": "StartOfInterval",
+          "retry": 3,
+          "longRetry": 0,
+          "longRetryInterval": "00:00:00"
+        },
+        "scheduler": {
+          "frequency": "Day",
+          "interval": 1
+        },
+        "name": "CopyActivity-0"
+      }
+    ],
+    "start": "$today",
+    "end": "2099-12-30T23:00:00Z",
+    "isPaused": false,
+    "pipelineMode": "Scheduled"
+  },
+  "$schema": "http://datafactories.schema.management.azure.com/schemas/2015-09-01/Microsoft.DataFactory.Pipeline.json"
+}
