@@ -21,7 +21,7 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/CopyPipeline_96x')]",
+			"name": "[concat(parameters('factoryName'), '/BlobCopy')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -72,8 +72,16 @@
 								"referenceName": "SourceDataset_96x",
 								"type": "DatasetReference",
 								"parameters": {
-									"path": {
-										"value": "@pipeline().parameters.srcPath",
+									"container": {
+										"value": "@pipeline().parameters.srcContainer",
+										"type": "Expression"
+									},
+									"folder": {
+										"value": "@pipeline().parameters.srcFolder",
+										"type": "Expression"
+									},
+									"file": {
+										"value": "@pipeline().parameters.srcFile",
 										"type": "Expression"
 									}
 								}
@@ -93,9 +101,16 @@
 					"cancelAfter": {}
 				},
 				"parameters": {
-					"srcPath": {
+					"srcContainer": {
 						"type": "string",
-						"defaultValue": "edcdata/gearwheels.xml"
+						"defaultValue": "edcdata"
+					},
+					"srcFolder": {
+						"type": "string"
+					},
+					"srcFile": {
+						"type": "string",
+						"defaultValue": "gearwheels.xml"
 					}
 				},
 				"annotations": [],
@@ -141,7 +156,13 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"path": {
+					"container": {
+						"type": "string"
+					},
+					"folder": {
+						"type": "string"
+					},
+					"file": {
 						"type": "string"
 					}
 				},
@@ -150,8 +171,16 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().file",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().folder",
+							"type": "Expression"
+						},
 						"container": {
-							"value": "@dataset().path",
+							"value": "@dataset().container",
 							"type": "Expression"
 						}
 					}
