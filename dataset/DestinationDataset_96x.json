@@ -2,7 +2,7 @@
 	"name": "DestinationDataset_96x",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "edcconsumer",
+			"referenceName": "linkedService1",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
