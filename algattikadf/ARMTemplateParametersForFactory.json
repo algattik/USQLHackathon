@@ -10,6 +10,12 @@
 		},
 		"edcconsumer_connectionString": {
 			"value": ""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://algattikadf.vault.azure.net/"
+		},
+		"linkedService1_properties_typeProperties_connectionString_secretName": {
+			"value": "srckey"
 		}
 	}
 }

@@ -15,6 +15,14 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'edcconsumer'"
 		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://algattikadf.vault.azure.net/"
+		},
+		"linkedService1_properties_typeProperties_connectionString_secretName": {
+			"type": "string",
+			"defaultValue": "srckey"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -47,6 +55,12 @@
 					},
 					"edcconsumer_connectionString": {
 						"value": "[parameters('edcconsumer_connectionString')]"
+					},
+					"AzureKeyVault1_properties_typeProperties_baseUrl": {
+						"value": "[parameters('AzureKeyVault1_properties_typeProperties_baseUrl')]"
+					},
+					"linkedService1_properties_typeProperties_connectionString_secretName": {
+						"value": "[parameters('linkedService1_properties_typeProperties_connectionString_secretName')]"
 					}
 				}
 			},
