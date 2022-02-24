@@ -1,0 +1,21 @@
+{
+	"name": "DestinationDataset_96x",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edcconsumer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "downloaded"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

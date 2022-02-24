@@ -1,0 +1,76 @@
+{
+	"name": "CopyPipeline_96x",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy_96x",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [
+					{
+						"name": "Source",
+						"value": "edcdata//materials.xml"
+					},
+					{
+						"name": "Destination",
+						"value": "downloaded//"
+					}
+				],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"validateDataConsistency": false
+				},
+				"inputs": [
+					{
+						"referenceName": "SourceDataset_96x",
+						"type": "DatasetReference",
+						"parameters": {
+							"path": {
+								"value": "@pipeline().parameters.srcPath",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DestinationDataset_96x",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"parameters": {
+			"srcPath": {
+				"type": "string",
+				"defaultValue": "edcdata/gearwheels.xml"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-02-24T06:40:43Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

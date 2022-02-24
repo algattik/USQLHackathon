@@ -1,0 +1,9 @@
+{
+	"name": "algattikadf",
+	"location": "switzerlandnorth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "b52133d4-aaa2-49a7-9d95-2a8a8b6def3b",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
