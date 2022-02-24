@@ -1,0 +1,17 @@
+{
+	"name": "DestinationDataset_flo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "edcconsumer",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "downloaded"
+			}
+		}
+	}
+}
