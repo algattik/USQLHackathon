@@ -1,5 +1,5 @@
 {
-	"name": "CopyPipeline_96x",
+	"name": "BlobCopy",
 	"properties": {
 		"activities": [
 			{
@@ -48,8 +48,16 @@
 						"referenceName": "SourceDataset_96x",
 						"type": "DatasetReference",
 						"parameters": {
-							"path": {
-								"value": "@pipeline().parameters.srcPath",
+							"container": {
+								"value": "@pipeline().parameters.srcContainer",
+								"type": "Expression"
+							},
+							"folder": {
+								"value": "@pipeline().parameters.srcFolder",
+								"type": "Expression"
+							},
+							"file": {
+								"value": "@pipeline().parameters.srcFile",
 								"type": "Expression"
 							}
 						}
@@ -64,9 +72,16 @@
 			}
 		],
 		"parameters": {
-			"srcPath": {
+			"srcContainer": {
 				"type": "string",
-				"defaultValue": "edcdata/gearwheels.xml"
+				"defaultValue": "edcdata"
+			},
+			"srcFolder": {
+				"type": "string"
+			},
+			"srcFile": {
+				"type": "string",
+				"defaultValue": "gearwheels.xml"
 			}
 		},
 		"annotations": [],
